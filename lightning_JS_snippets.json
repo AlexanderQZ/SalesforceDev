@@ -1,0 +1,133 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"controller js function": {
+		"scope": "javascript",
+		"prefix": "func",
+		"body": [
+			"${1:name}: function(cmp, event, helper){",
+			"\t$0",
+			"},"
+		],
+		"description": "create the controller function"
+	},
+	"helper js function": {
+		"scope": "javascript",
+		"prefix": "hfc1",
+		"body": [
+			"${1:name}: function(cmp, helper){",
+			"\t$0",
+			"},"
+		],
+		"description": "create the controller function"
+	},
+	"helper2 js function": {
+		"scope": "javascript",
+		"prefix": "hfc2",
+		"body": [
+			"${1:name}: function(cmp, ${2:data}){",
+			"\t$0",
+			"},"
+		],
+		"description": "create the controller function"
+	},
+	"helper action": {
+		"scope": "javascript",
+		"prefix": "ha",
+		"body": [
+			"var action = cmp.get(\"c.${1:MethodName}\");",
+			"action.setParams({",
+			"\t'${2:param1}': '${3:value1}'",
+			"\t$4",
+			"});",
+			"action.setCallback(this, (res)=>{",
+			"\tvar state = res.getState();",
+			"\tif(state === \"SUCCESS\"){",
+			"\t$5",
+			"\t}else if(state === \"ERROR\"){",
+			"\t$6",
+			"\t}",
+			"});",
+			"\\$A.enqueueAction(action);",
+		],
+		"description": "create the action template"
+	},
+	"Toast": {
+		"scope": "javascript",
+		"prefix": "toast",
+		"body": [
+			"showToast: function(toastInfo) {",
+			"\tconst {",
+			"\t\ttitle,",
+			"\t\tmessage,",
+			"\t\tmode",
+			"\t} = toastInfo;",
+			"\tvar toastEvt = \\$A.get('e.force:showToast')",
+			"\ttoastEvt.setParams({",
+			"\t\t\"title\": title,",
+			"\t\t\"mode\": mode,",
+			"\t\t\"message\": message",
+			"\t});",
+			"\ttoastEvt.fire();",
+			"}"
+		],
+		"description": "handle the toast event in helper js"
+	},
+	"ErrorMessage": {
+		"scope": "javascript",
+		"prefix": "error",
+		"body": [
+			"getRestError: function (response) {",
+			"\tif (\\$A.util.isEmpty(errors) || errors.length == 0) {",
+			"\t\treturn null;",
+			"\t}",
+			"\tif (errors[0].message) {",
+			"\t\treturn errors[0].message;",
+			"\t} else if (errors[0].pageErrors.length > 0) {",
+			"\t\tif (errors[0].pageErrors[0].message)",
+			"\t\t\treturn JSON.stringify(errors[0].pageErrors[0].message);",
+		    "\t\treturn JSON.stringify(errors[0].pageErrors[0]);",
+			"\t} else if (errors[0].duplicateResults.length > 0) {",
+			"\t\treturn JSON.stringify(errors[0].duplicateResults[0]);",
+			"\t} else if (errors[0].fieldErrors) {",
+			"\t\treturn JSON.stringify(errors[0].fieldErrors);",
+			"\t} else {",
+			"\t\treturn null;",
+			"\t}",
+			"}"
+		],
+		"description": "handle the error Message in helper js"
+	},
+	"aura-fireEvent-application": {
+		"scope": "javascript",
+		"prefix": "fevt2",
+		"body": [
+			"\tvar appEvent = $A.get(\"e.c:${1:eventName}\");",
+			"\tappEvent.setParams({",
+			"\t\t\"${2:param1}\": \"${3:value1}\"",
+			"\t$0",
+			"\t});",
+			"\ttappEvent.fire();"
+		],
+		"description": ""
+	},
+	"aura-fireEvent": {
+		"scope": "javascript",
+		"prefix": "fevt",
+		"body": [
+			"\tvar cmpEvent = cmp.getEvent(\"${1:eventName}\");",
+			"\tcmpEvent.setParams({",
+			"\t\t\"${2:param1}\": \"${3:value1}\"",
+			"\t$0",
+			"\t});",
+			"\tcompEvent.fire();"
+		],
+		"description": ""
+	},
+
+}

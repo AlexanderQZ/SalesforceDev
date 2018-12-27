@@ -1,0 +1,73 @@
+{
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"aura-attribute": {
+		"prefix": "attr",
+		"body": [
+			"<aura:attribute name=\"${1: attrName}\" type=\"${2: type}\" default=\"$3\" />",
+		],
+		"description": "lightnig attribute"
+	},
+	"aura-if2": {
+		"prefix": "aif2",
+		"body":[
+			"<aura:if isTrue=\"{v.${1:condition}\">",
+			"\t$2",
+			"\t<aura:set attribute=\"else\">",
+			"\t$0",
+			"\t</aura:set>",
+			"</aura:if>"
+		],
+		"description": "lightning if"
+	},
+	"aura-if": {
+		"prefix": "aif",
+		"body":[
+			"<aura:if isTrue=\"{v.${1:condition}\">",
+			"\t$2",
+			"</aura:if>"
+		],
+		"description": "lightning if"
+	},
+	"aura-init": {
+		"prefix": "init",
+		"body": [
+			"<aura:handler name=\"init\" value=\"{!this}\" action=\"{!c.doInit}\"/>"
+		],
+		"description": ""
+	},
+	"aura-change": {
+		"prefix": "achange",
+		"body": [
+			"<aura:handler name=\"change\" value=\"{!v.${1:changeName}}\" action=\"{!c.${2:method}}\"/>"
+		],
+		"description": ""
+	},
+	"aura-register" : {
+		"prefix": "revt",
+		"body": [
+			"<aura:registerEvent name=\"${1:eventName}\" type=\"c:${3:cmpName}\" />"
+		],
+		"description": ""
+	},
+	"aura-handler": {
+		"prefix": "rhand",
+		"body": [
+			"<aura:handler name=\"${1:eventName}\" event=\"c:${3:cmpName}\" action=\"{!c.${0: method}}\"/>"
+		],
+		"description": ""
+	},
+	"aura-handler-application": {
+		"prefix": "rhand2",
+		"body": [
+			"<aura:handler event=\"c:${3:cmpName}\" action=\"{!c.${0: method}}\"/>"
+		],
+		"description": ""
+	},
+	
+}
