@@ -1,26 +1,26 @@
 {
-	 //Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
-	 //description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
-	 //is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
-	 //used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
-	 //$1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
-	 //Placeholders with the same ids are connected.
-	 //Example:
-	/*"controller js function": {
+	// Place your global snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	// Example:
+	"controller js function": {
 		"scope": "javascript",
 		"prefix": "func",
 		"body": [
-			"${1:name}: function(cmp, event, helper){",
+			"${1:name}: function(cmp, event, helper) {",
 			"\t$0",
 			"},"
 		],
 		"description": "create the controller function"
-	},*/
+	},
 	"helper js function": {
 		"scope": "javascript",
 		"prefix": "hfc1",
 		"body": [
-			"${1:name}: function(cmp, helper){",
+			"${1:name}: function(cmp, helper) {",
 			"\t$0",
 			"},"
 		],
@@ -30,7 +30,7 @@
 		"scope": "javascript",
 		"prefix": "hfc2",
 		"body": [
-			"${1:name}: function(cmp, ${2:data}){",
+			"${1:name}: function(cmp, ${2:data}) {",
 			"\t$0",
 			"},"
 		],
@@ -47,9 +47,9 @@
 			"});",
 			"action.setCallback(this, (res)=>{",
 			"\tvar state = res.getState();",
-			"\tif(state === \"SUCCESS\"){",
+			"\tif(state === \"SUCCESS\") {",
 			"\t$5",
-			"\t}else if(state === \"ERROR\"){",
+			"\t}else if(state === \"ERROR\") {",
 			"\t$6",
 			"\t}",
 			"});",
@@ -129,5 +129,52 @@
 		],
 		"description": ""
 	},
+	"aura-findcomponet": {
+		"scope": "javascript",
+		"prefix": "cmpf",
+		"body": [
+			"\tvar container = cmp.find(\"${1:cmpName}\");",
+		],
+		"description": ""
+	},
+	"aura-createcomponent": {
+		"scope": "javascript",
+		"prefix": "crtcmp",
+		"body": [
+			"\t\\$A.createComponent(",
+			"\t\t\"c.${1:cmpName}\",",
+			"\t\t{",
+			"\t\t\t$2",
+			"\t\t},",
+			"\t\tfunction(newCmp, status, error) {",
+			"\t\t\tif(status ===\"SUCCESS\") {",
+			"\t\t\t\tvar body = cmp.get(\"v.body\");",
+			"\t\t\t\tbody.push(newCmp);",
+			"\t\t\t\tcmp.set(\"v.body\");",
+			"\t\t\t}else if(status === \"ERROR\") {",
+			"\t\t\t\tconsole.log('error', error);",
+			"\t\t\t}",
+			"\t\t}",
+			"\t);"
+
+		],
+		"description": ""
+	},
+	"aura-destorycomponent": {
+		"scope": "javascript",
+		"prefix": "decmp",
+		"body": [
+			"removeComponent: function(cmp, type) {",
+			"\tvar helper = this;",
+			"\tvar cmpContainer = cmp.find(type);",
+			"\tvar body = cmpContainer.get(\"v.body\");",
+			"\tfor (var i=0; i<body.length; i++) {",
+			"\t\tbody[i].destory();",
+			"\t}",
+			"\tcmpContainer.set(\"v.body\",[]);",
+			"}"
+		],
+		"description": ""
+	}
 
 }
